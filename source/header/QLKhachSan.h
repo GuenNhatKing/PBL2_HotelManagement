@@ -1,5 +1,9 @@
 #ifndef QLKHACHSAN_H
 #define QLKHACHSAN_H
+#include <fstream>
+#include <sstream>
+#include <cctype>
+#include <conio.h>
 #include "DatPhong.h"
 #include "KhachHang.h"
 #include "LoaiPhong.h"
@@ -14,6 +18,8 @@
 #include "LinkedList.h"
 #include <iostream> 
 #include <fstream>
+
+#define MAX_NAME 50
 
 class QLKhachSan {
     QLKhachHang QLKH;
@@ -57,5 +63,7 @@ public:
     void dangXuat();
     void kiemTraTraPhong();
     void thongBao(string, string);
+    void chuanHoaTen(string &);
+    string Nhap(int ,int );
 };
 #endif

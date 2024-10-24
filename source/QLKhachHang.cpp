@@ -1,6 +1,6 @@
 #include "./header/QLKhachHang.h"
 QLKhachHang::QLKhachHang() {
-
+    
 }
 
 QLKhachHang::~QLKhachHang() {

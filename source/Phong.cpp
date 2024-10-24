@@ -1,6 +1,6 @@
 #include "./header/Phong.h"
 Phong::Phong(string, string) {
-
+    
 }
 
 Phong::Phong(const Phong&) {
