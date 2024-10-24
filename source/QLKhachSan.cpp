@@ -109,7 +109,7 @@ void QLKhachSan::chuanHoaTen(string &str) {
         }
     }
 }
-string QLKhachSan::nhap(int kytu, int sl) { 
+static string QLKhachSan::nhap(int kytu, int sl) { 
     //khi dùng sl phải tăng thêm 1 vì còn ký tự '\0'     
     //kytu 1: Chỉ số; 2: Chữ và khoản trắng; 3: Cả 2
     string temp = "";

@@ -64,6 +64,6 @@ public:
     void kiemTraTraPhong();
     void thongBao(string, string);
     void chuanHoaTen(string &);
-    string Nhap(int ,int );
+    static string nhap(int ,int );
 };
 #endif

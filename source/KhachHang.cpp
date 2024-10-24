@@ -1,4 +1,5 @@
 #include "./header/KhachHang.h"
+#include "./header/QLKhachSan.h"
 KhachHang::KhachHang() {
     IDKhachHang = "";   
     hoTen = "";
@@ -94,10 +95,10 @@ string KhachHang::nhapNgaySinh() {
         check = 1;
 
         // Kiểm tra tháng và năm hợp lệ
-        if (month <= 0 || month > 12 || year <= 1900 || year > localTimeInfo->tm_year + 1900 - 18) {
-            check = 0;
-        }
-
+        // if (month <= 0 || month > 12 || year <= 1900 || year > localTimeInfo->tm_year + 1900 - 18) {
+        //     check = 0;
+        // }
+        // Compiler error: ‘localTimeInfo’ was not declared in this scope
         // Kiểm tra năm nhuận
         if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
             if (month == 2 && (day > 29 || day <= 0)) {
@@ -131,53 +132,53 @@ void KhachHang::menuSuaThongTin(){        //in menu sửa thông tin
 void KhachHang::suaThongTin() {
     string choice;          //lựa chọn
     string temp;            //biến tạm
-
-    while (true) {
-        menuSuaThongTin();
-        choice = nhap(1, 2);         //chọn 2 vì 1 số và 1 ký tự '\0'
-        switch(choice) {
-            case '1':
-                cout << "Nhap ID Khach Hang moi: ";
-                temp = nhap(1, 10);           //id khách hàng có 9 ký tự
-                this->setIDKhachHang(temp);
-                system("clear");
-                cout<< "Chinh sua thong tin thanh cong!" << endl;
-                break;
-            case "2":
-                cout << "Nhap ho ten moi: ";
-                temp = nhap(2, MAX_NAME+1);
-                this->setHoTen(temp);
-                system("clear");
-                cout<< "Chinh sua thong tin thanh cong!" << endl;
-                break;
-            case "3":
-                temp = nhapNgaySinh();
-                system("clear");
-                cout<< "Chinh sua thong tin thanh cong!" << endl;
-                break;
-            case "4":
-                cout << "Nhap So dien thoai moi: ";
-                temp = nhap(1, 11);           //số điện thoại có 10 ký tự
-                this->setSoDienThoai(temp);
-                system("clear");
-                cout<< "Chinh sua thong tin thanh cong!" << endl;
-                break;
-            case "5":
-                cout << "Nhap gioi tinh moi (Nam nhap 0, Nu nhap 1): ";
-                temp = nhap(1, 2);           //giới tính có 1 ký tự
-                this->setGioiTinh(temp);
-                system("clear");
-                cout<< "Chinh sua thong tin thanh cong!" << endl;
-                break;
-            case "6":
-                return;
-            default:
-                system("clear");
-                cout << "Lua chon khong hop le." << endl;
-                cout<< "Vui long chon lai!" << endl;
-                break;
-        }  
-    }
+    // Moá
+    // while (true) {
+    //     menuSuaThongTin();
+    //     choice = QLKhachSan::nhap(1, 2);         //chọn 2 vì 1 số và 1 ký tự '\0'
+    //     switch(choice) {
+    //         case '1':
+    //             cout << "Nhap ID Khach Hang moi: ";
+    //             temp = QLKhachSan::nhap(1, 10);           //id khách hàng có 9 ký tự
+    //             this->setIDKhachHang(temp);
+    //             system("clear");
+    //             cout<< "Chinh sua thong tin thanh cong!" << endl;
+    //             break;
+    //         case "2":
+    //             cout << "Nhap ho ten moi: ";
+    //             temp = QLKhachSan::nhap(2, MAX_NAME+1);
+    //             this->setHoTen(temp);
+    //             system("clear");
+    //             cout<< "Chinh sua thong tin thanh cong!" << endl;
+    //             break;
+    //         case "3":
+    //             temp = nhapNgaySinh();
+    //             system("clear");
+    //             cout<< "Chinh sua thong tin thanh cong!" << endl;
+    //             break;
+    //         case "4":
+    //             cout << "Nhap So dien thoai moi: ";
+    //             temp = QLKhachSan::nhap(1, 11);           //số điện thoại có 10 ký tự
+    //             this->setSoDienThoai(temp);
+    //             system("clear");
+    //             cout<< "Chinh sua thong tin thanh cong!" << endl;
+    //             break;
+    //         case "5":
+    //             cout << "Nhap gioi tinh moi (Nam nhap 0, Nu nhap 1): ";
+    //             temp = QLKhachSan::nhap(1, 2);           //giới tính có 1 ký tự
+    //             this->setGioiTinh(temp);
+    //             system("clear");
+    //             cout<< "Chinh sua thong tin thanh cong!" << endl;
+    //             break;
+    //         case "6":
+    //             return;
+    //         default:
+    //             system("clear");
+    //             cout << "Lua chon khong hop le." << endl;
+    //             cout<< "Vui long chon lai!" << endl;
+    //             break;
+    //     }  
+    // }
 }
 
 void KhachHang::work() {
@@ -189,21 +190,22 @@ void KhachHang::work() {
 }
 
 string KhachHang::taoIDKhachHang() {        //tạo ID khách hàng bằng cách lấy ID khách hàng cuối cùng tăng lên 1
-                                            //chứ ko lưu vào file
-    string IDKhachHang;
-    if(DSKH->prev == DSKH->head) {
-        IDKhachHang = "100001";    //số đầu tên là chia đối tượng kh, nhân viên,...
-    }
-    else if(DSKH->prev->data.getIDKhachHang() == "199999") {
-        return -1;      //đã đạt giới hạn số khách hàng
-    }
-    else{
-        string head = DSKH->prev->data.getIDKhachHang().substr(0, 1);   //lấy số đầu
-        string tail = DSKH->prev->data.getIDKhachHang().substr(1);      //lấy số sau
-        int num = stoi(tail) + 1;
-        IDKhachHang = head + to_string(num);
-    }
-    return IDKhachHang;
+    //                                         //chứ ko lưu vào file
+    // DSKH ở đâu ra dùng v 3 ?
+    // string IDKhachHang;
+    // if(DSKH->prev == DSKH->head) {
+    //     IDKhachHang = "100001";    //số đầu tên là chia đối tượng kh, nhân viên,...
+    // }
+    // else if(DSKH->prev->data.getIDKhachHang() == "199999") {
+    //     return -1;      //đã đạt giới hạn số khách hàng
+    // }
+    // else{
+    //     string head = DSKH->prev->data.getIDKhachHang().substr(0, 1);   //lấy số đầu
+    //     string tail = DSKH->prev->data.getIDKhachHang().substr(1);      //lấy số sau
+    //     int num = stoi(tail) + 1;
+    //     IDKhachHang = head + to_string(num);
+    // }
+    // return IDKhachHang;
 }
 void KhachHang::huyDatPhong(string IDDatPhong) {
 

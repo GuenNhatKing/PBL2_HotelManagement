@@ -2,6 +2,8 @@
 #define QLKHACHHANG_H
 #include "KhachHang.h"
 #include "LinkedList.h"
+class KhachHang;
+#include "KhachHang.h"
 class QLKhachHang {
     LinkedList<KhachHang> DSKH; // Danh sach khach hang
 public:

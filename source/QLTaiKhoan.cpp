@@ -8,7 +8,6 @@ QLTaiKhoan::~QLTaiKhoan() {
 }
 
 void QLTaiKhoan::themTaiKhoan(TaiKhoan) {
-    TaiKhoan new 
 
 }
 void QLTaiKhoan::timKiemTaiKhoan(string) {

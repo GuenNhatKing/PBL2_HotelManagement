@@ -1,6 +1,7 @@
 #ifndef QLDATPHONG_H
 #define QLDATPHONG_H
 #include "DatPhong.h"
+class KhachHang;
 #include "KhachHang.h"
 #include "Phong.h"
 
